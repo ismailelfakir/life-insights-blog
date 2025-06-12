@@ -27,8 +27,6 @@ export const Header: React.FC = () => {
         { name: 'Travel', href: '/category/travel' },
       ]
     },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
     {
       name: 'Legal',
       href: '/privacy-policy',
@@ -41,6 +39,8 @@ export const Header: React.FC = () => {
         { name: 'Impressum', href: '/impressum' },
       ]
     },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const isActive = (path: string) => {
