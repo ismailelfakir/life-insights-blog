@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ad slot styling for AdSense compliance */
+.ad-slot {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure ads don't interfere with content */
+.ad-slot + .ad-slot {
+  margin-top: 2rem;
+}
+
+/* Mobile ad responsiveness */
+@media (max-width: 768px) {
+  .ad-slot {
+    min-height: 80px;
+  }
+}
