@@ -22,8 +22,8 @@ export const Footer: React.FC = () => {
             </Link>
             <p className="text-gray-300 mb-4 max-w-md">
               Discover practical insights and tips for health, education, lifestyle, 
-              and more. Our mission is to provide valuable, easy-to-understand content 
-              that helps you live your best life.
+              technology, insurance, and more. Our mission is to provide valuable, 
+              easy-to-understand content that helps you live your best life.
             </p>
             <div className="flex space-x-4">
               <div className="flex items-center text-gray-300">
@@ -114,6 +114,22 @@ export const Footer: React.FC = () => {
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Technology
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/category/insurance" 
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Insurance
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/category/travel" 
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Travel
                 </Link>
               </li>
             </ul>

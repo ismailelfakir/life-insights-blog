@@ -6,7 +6,8 @@ import {
   MapPin,
   FileText,
   Lightbulb,
-  Globe
+  Globe,
+  Shield
 } from 'lucide-react';
 
 const categoryColors = {
@@ -14,6 +15,7 @@ const categoryColors = {
   education: 'blue',
   lifestyle: 'purple',
   technology: 'orange',
+  insurance: 'indigo',
   travel: 'cyan',
   default: 'gray'
 };
@@ -26,7 +28,8 @@ const categoryIcons = {
   MapPin,
   FileText,
   Lightbulb,
-  Globe
+  Globe,
+  Shield
 };
 
 export const getCategoryColor = (category: string): string => {
@@ -43,6 +46,7 @@ export const getCategoryDisplayName = (slug: string): string => {
     education: 'Education',
     lifestyle: 'Lifestyle',
     technology: 'Technology',
+    insurance: 'Insurance',
     travel: 'Travel'
   };
   

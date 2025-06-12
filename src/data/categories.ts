@@ -35,6 +35,14 @@ export const categories: Category[] = [
   },
   {
     id: '5',
+    name: 'Insurance',
+    slug: 'insurance',
+    description: 'Understanding insurance options and financial protection',
+    color: 'indigo',
+    icon: 'Shield'
+  },
+  {
+    id: '6',
     name: 'Travel',
     slug: 'travel',
     description: 'Discover amazing places and travel tips',
