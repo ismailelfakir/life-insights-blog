@@ -7,6 +7,7 @@ export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isLegalOpen, setIsLegalOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
@@ -28,12 +29,29 @@ export const Header: React.FC = () => {
     },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
+    {
+      name: 'Legal',
+      href: '/privacy-policy',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'Privacy Policy', href: '/privacy-policy' },
+        { name: 'Terms of Use', href: '/terms-of-use' },
+        { name: 'Cookie Policy', href: '/cookie-policy' },
+        { name: 'Disclaimer', href: '/disclaimer' },
+        { name: 'Impressum', href: '/impressum' },
+      ]
+    },
   ];
 
   const isActive = (path: string) => {
     if (path === '/' && location.pathname === '/') return true;
     if (path !== '/' && location.pathname.startsWith(path)) return true;
     return false;
+  };
+
+  const isLegalActive = () => {
+    const legalPaths = ['/privacy-policy', '/terms-of-use', '/cookie-policy', '/disclaimer', '/impressum'];
+    return legalPaths.some(path => location.pathname === path);
   };
 
   return (
@@ -62,12 +80,18 @@ export const Header: React.FC = () => {
                 {item.hasDropdown ? (
                   <div
                     className="relative"
-                    onMouseEnter={() => setIsCategoriesOpen(true)}
-                    onMouseLeave={() => setIsCategoriesOpen(false)}
+                    onMouseEnter={() => {
+                      if (item.name === 'Categories') setIsCategoriesOpen(true);
+                      if (item.name === 'Legal') setIsLegalOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      if (item.name === 'Categories') setIsCategoriesOpen(false);
+                      if (item.name === 'Legal') setIsLegalOpen(false);
+                    }}
                   >
                     <button
                       className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
-                        isActive(item.href)
+                        (item.name === 'Legal' && isLegalActive()) || isActive(item.href)
                           ? 'text-blue-600 dark:text-blue-400'
                           : 'text-gray-700 dark:text-gray-300'
                       }`}
@@ -76,14 +100,21 @@ export const Header: React.FC = () => {
                       <ChevronDown className="ml-1 h-4 w-4" />
                     </button>
                     
-                    {isCategoriesOpen && (
+                    {((item.name === 'Categories' && isCategoriesOpen) || (item.name === 'Legal' && isLegalOpen)) && (
                       <div className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50">
                         {item.dropdownItems?.map((dropdownItem) => (
                           <Link
                             key={dropdownItem.name}
                             to={dropdownItem.href}
-                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                            onClick={() => setIsCategoriesOpen(false)}
+                            className={`block px-4 py-2 text-sm transition-colors ${
+                              isActive(dropdownItem.href)
+                                ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400'
+                            }`}
+                            onClick={() => {
+                              setIsCategoriesOpen(false);
+                              setIsLegalOpen(false);
+                            }}
                           >
                             {dropdownItem.name}
                           </Link>
@@ -171,8 +202,8 @@ export const Header: React.FC = () => {
                   <Link
                     to={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
-                      isActive(item.href)
+                    className={`block px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                      (item.name === 'Legal' && isLegalActive()) || isActive(item.href)
                         ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
                         : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
                     }`}
@@ -181,12 +212,16 @@ export const Header: React.FC = () => {
                   </Link>
                   {item.hasDropdown && (
                     <div className="ml-4 mt-2 space-y-1">
-                      {item.dropdownItems?.slice(1).map((dropdownItem) => (
+                      {item.dropdownItems?.map((dropdownItem) => (
                         <Link
                           key={dropdownItem.name}
                           to={dropdownItem.href}
                           onClick={() => setIsMenuOpen(false)}
-                          className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                          className={`block px-4 py-2 text-sm rounded-lg transition-colors ${
+                            isActive(dropdownItem.href)
+                              ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
+                              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400'
+                          }`}
                         >
                           {dropdownItem.name}
                         </Link>
