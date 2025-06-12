@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Search, BookOpen, ChevronDown } from 'lucide-react';
+import { Menu, X, Sun, Moon, Search, ChevronDown } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
 export const Header: React.FC = () => {
@@ -59,9 +59,13 @@ export const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="p-2 bg-blue-600 rounded-lg group-hover:bg-blue-700 transition-colors">
-              <BookOpen className="h-6 w-6 text-white" />
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="flex-shrink-0">
+              <img
+                src="/Vertical Lockup on White Background.png"
+                alt="LifeInsights Blog"
+                className="h-10 w-auto"
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold text-gray-900 dark:text-white">

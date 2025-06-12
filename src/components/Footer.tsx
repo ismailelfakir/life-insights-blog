@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -11,9 +11,13 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="p-2 bg-blue-600 rounded-lg">
-                <BookOpen className="h-6 w-6 text-white" />
+            <Link to="/" className="flex items-center space-x-3 mb-4">
+              <div className="flex-shrink-0">
+                <img
+                  src="/Vertical Lockup on White Background.png"
+                  alt="LifeInsights Blog"
+                  className="h-8 w-auto filter brightness-0 invert"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold">LifeInsights</span>
@@ -168,7 +172,7 @@ export const Footer: React.FC = () => {
                 Impressum
               </Link>
               <span className="text-gray-400">
-                Made with ❤️ for better living
+                Made with ❤️ by Ismail El Fakir
               </span>
             </div>
           </div>
